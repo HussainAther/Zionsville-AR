@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zionsville Heritage AR</title>
+    <script src="https://cdn.8thwall.com/web/aframe/8frame-0.9.0.min.js"></script>
+    <script src="https://apps.8thwall.com/xrweb"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #menu { position: fixed; top: 10px; left: 10px; z-index: 10; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <button onclick="show1920s()">1920s</button>
+        <button onclick="show1950s()">1950s</button>
+    </div>
+    <a-scene xrweb arjs>
+        <a-marker preset="custom" type="pattern" url="markers/marker1.patt">
+            <!-- Historical Photo 1 -->
+            <a-entity id="photo1" position="0 0 0">
+                <a-image src="images/historical_photo1.jpg" position="0 0.5 -2" width="1" height="0.5"></a-image>
+                <a-text value="Main Street in 1920s" position="0 1 -2" width="2" color="#FFFFFF"></a-text>
+            </a-entity>
+
+            <!-- Historical Photo 2 -->
+            <a-entity id="photo2" position="0 0 0" visible="false">
+                <a-image src="images/historical_photo2.jpg" position="1 0.5 -2" width="1" height="0.5"></a-image>
+                <a-text value="Main Street in 1950s" position="1 1 -2" width="2" color="#FFFFFF"></a-text>
+            </a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+        function show1920s() {
+            document.querySelector('#photo1').setAttribute('visible', 'true');
+            document.querySelector('#photo2').setAttribute('visible', 'false');
+        }
+
+        function show1950s() {
+            document.querySelector('#photo1').setAttribute('visible', 'false');
+            document.querySelector('#photo2').setAttribute('visible', 'true');
+        }
+    </script>
+</body>
+</html>
+
